@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:padding="10dp"
+       android:background="@color/white"
+          android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Camera Detector"
+            android:textStyle="bold"
+            style="@style/Subtitle" />
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5pt"
+            android:gravity="center"
+            android:text="Our app’s specialized feature detects red dot cameras,\n even in low-light scenarios, ensuring your protection in any environment."
+            style="@style/Caption" />
+
+        <ImageView
+            android:id="@+id/image_slide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20pt"
+            android:src="@drawable/slider_1" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

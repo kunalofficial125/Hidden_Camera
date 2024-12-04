@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.Wifi_Fragment">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="10pt"
+        android:id="@+id/scan_btn"
+        android:layout_width="match_parent"
+        android:text="Scan"
+        android:gravity="center"
+        android:layout_height="wrap_content"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scan_btn"
+        android:id="@+id/Stop_scan"
+        android:text="Stop"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="10pt"
+        android:layout_below="@id/Stop_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/wifi_list"
+        />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:layout_below="@id/Stop_scan"
+        android:id="@+id/scanResultsTextView"/>
+
+</RelativeLayout>
