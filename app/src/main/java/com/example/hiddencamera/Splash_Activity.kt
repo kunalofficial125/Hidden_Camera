@@ -28,6 +28,6 @@ class Splash_Activity : AppCompatActivity() {
             val intent = Intent(this@Splash_Activity, Slider_Activity::class.java)
             startActivity(intent)
             finish()
-        }, 5000) 
+        }, 3000)
     }
 }

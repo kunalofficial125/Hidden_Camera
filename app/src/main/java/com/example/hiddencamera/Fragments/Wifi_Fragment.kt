@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.net.wifi.ScanResult
 import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,7 +71,7 @@ class Wifi_Fragment : Fragment() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
-            return
+            //return
         }
 
         if (!wifiManager.isWifiEnabled) {
@@ -84,6 +85,8 @@ class Wifi_Fragment : Fragment() {
                     // Retrieve scan results
                     val results: List<ScanResult> = wifiManager.scanResults
                     wifiList.clear() // Clear the old list
+
+                    Log.d("WifiResults","Fetched")
 
                     // Add new results to the list
                     results.forEach { result ->

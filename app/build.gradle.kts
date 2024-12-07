@@ -52,6 +52,17 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     implementation ("androidx.viewpager2:viewpager2:1.1.0")
     implementation ("androidx.recyclerview:recyclerview")
+    implementation (libs.ssp.android)
+    implementation (libs.sdp.android)
+
+
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.video)
+
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.extensions)
 
 
 }

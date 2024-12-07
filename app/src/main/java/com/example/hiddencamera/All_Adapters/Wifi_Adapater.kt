@@ -1,6 +1,7 @@
 package com.example.hiddencamera.All_Adapters
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,14 +26,27 @@ class Wifi_Adapter(private val wifiList: List<WifiModel>) :
         holder.wifiName.text = wifi.ssid
         holder.wifiStrength.text = "${wifi.signalStrength}%"
 
+        val safeText = "Safe";
+        val unsafeText = "Not Safe"
+        val suspiciousText = "Suspicious"
 
-        if (wifi.safetyStatus == "Safe") {
-            holder.wifiSafety.text = wifi.safetyStatus
+        // Check if network uses secure encryption (WPA2, WPA3) or is insecure (WEP, open)
+        if (wifi.safetyStatus.contains("WPA2") || wifi.safetyStatus.contains("WPA3")) {
+            holder.wifiSafety.text = safeText
             holder.wifiSafety.setTextColor(Color.GREEN)
-        } else {
-            holder.wifiSafety.text = wifi.safetyStatus
-            holder.wifiSafety.setTextColor(Color.RED)
+            Log.d("WifiSecurity", "${wifi.ssid}: Secure (WPA2/WPA3)")
         }
+        else if (wifi.safetyStatus.contains("WEP") || wifi.safetyStatus.contains("WPS")) {
+            holder.wifiSafety.text = unsafeText
+            holder.wifiSafety.setTextColor(Color.RED)
+            Log.d("WifiSecurity", "${wifi.ssid}: Insecure (WEP or WPS)")
+        }
+        else {
+            holder.wifiSafety.text = suspiciousText
+            holder.wifiSafety.setTextColor(Color.YELLOW)
+            Log.d("WifiSecurity", "${wifi.ssid}: Open network")
+        }
+
     }
 
     override fun getItemCount(): Int = wifiList.size
