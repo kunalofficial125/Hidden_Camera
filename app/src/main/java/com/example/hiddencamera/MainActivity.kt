@@ -1,7 +1,10 @@
 package com.example.hiddencamera
 
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
@@ -17,6 +20,15 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             view.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        if (ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_GRANTED) {
+            // Permission already granted
+        } else {
+            // Request permission
+            ActivityCompat.requestPermissions(this,
+                arrayOf(android.Manifest.permission.CAMERA), 1098)
         }
 
 

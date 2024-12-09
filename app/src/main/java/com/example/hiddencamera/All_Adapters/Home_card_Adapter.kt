@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hiddencamera.All_Models.Home_Card_Model
+import com.example.hiddencamera.Fragments.InfraRed_Detection
 import com.example.hiddencamera.Fragments.Wifi_Fragment
 import com.example.hiddencamera.R
 
@@ -48,6 +49,12 @@ class Home_card_Adapter(
                 val fragmentTransaction = (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
                 val wifiFragment = Wifi_Fragment() // Your WiFi fragment
                 fragmentTransaction.replace(R.id.fragment_container, wifiFragment)
+                fragmentTransaction.addToBackStack(null)
+                fragmentTransaction.commit()
+            }
+            else if(itemsList[position].text == "Reddot"){
+                val fragmentTransaction = (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+                fragmentTransaction.replace(R.id.fragment_container, InfraRed_Detection())
                 fragmentTransaction.addToBackStack(null)
                 fragmentTransaction.commit()
             }
