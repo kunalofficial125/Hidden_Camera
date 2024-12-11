@@ -3,4 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="main">#6DADF3</color>
+    <color name="translucent_gray">#80A0A0A0</color>
+    <color name="translucent_red">#80B82828</color>
+    <color name="translucent_green">#8045BC45</color>
+    <color name="translucent_blue">#804A4ABC</color>
+    <color name="translucent_yellow">#80C5C53E</color>
+    <color name="transparent">#00FFFFFF</color>
+
 </resources>

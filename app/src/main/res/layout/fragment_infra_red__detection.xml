@@ -3,19 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".Fragments.InfraRed_Detection">
 
 
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
         android:layout_width="match_parent"
+        android:layout_marginBottom="@dimen/_60sdp"
         android:layout_height="match_parent"/>
 
-    <SurfaceView
-        android:id="@+id/surfaceView"
+    <ImageView
+        android:id="@+id/filterImg"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"/>
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:background="@color/transparent"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/filterBtn"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:layout_gravity="bottom|center"
+        android:text="Change Filter"
+        android:textSize="@dimen/_12ssp"
+        android:layout_height="@dimen/_40sdp"/>
 
 
 </FrameLayout>

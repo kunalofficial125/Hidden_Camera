@@ -3,6 +3,8 @@ package com.example.hiddencamera.Fragments
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.util.Size
@@ -11,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.SurfaceHolder
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.ImageProxy
@@ -20,6 +24,7 @@ import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.hiddencamera.R
+import java.util.Collections
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -57,6 +62,8 @@ class InfraRed_Detection : Fragment() {
         val v = inflater.inflate(R.layout.fragment_infra_red__detection, container, false)
 
         val previewView: PreviewView = v.findViewById(R.id.previewView)
+        val filterImg: ImageView = v.findViewById(R.id.filterImg)
+        val filterBtn: Button = v.findViewById(R.id.filterBtn)
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
@@ -68,6 +75,28 @@ class InfraRed_Detection : Fragment() {
             // Request permission
             ActivityCompat.requestPermissions(requireActivity(),
                 arrayOf(android.Manifest.permission.CAMERA), 1098)
+        }
+
+        val transRed = ContextCompat.getColor(requireContext(), R.color.translucent_red)
+        val transGreen = ContextCompat.getColor(requireContext(), R.color.translucent_green)
+        val transYellow = ContextCompat.getColor(requireContext(), R.color.translucent_yellow)
+        val transBlue = ContextCompat.getColor(requireContext(), R.color.translucent_blue)
+        val transGrey = ContextCompat.getColor(requireContext(), R.color.translucent_gray)
+        val transparent = ContextCompat.getColor(requireContext(), R.color.transparent)
+
+        val filters = mutableListOf<Int>(transGrey, transBlue, transRed, transGreen, transYellow, transparent)
+
+        var selectedFilter = transGrey
+        var filterCounter = 0;
+        filterBtn.setOnClickListener{
+            if(filterCounter==filters.size-1){
+                filterCounter = 0
+            }
+            else{
+                filterCounter++
+            }
+            selectedFilter = filters[filterCounter]
+            filterImg.setBackgroundColor(selectedFilter)
         }
 
         return v
