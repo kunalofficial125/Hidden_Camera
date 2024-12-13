@@ -9,9 +9,11 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hiddencamera.All_Models.Home_Card_Model
 import com.example.hiddencamera.Fragments.InfraRed_Detection
+import com.example.hiddencamera.Fragments.MagnetometerFrag
 import com.example.hiddencamera.Fragments.Wifi_Fragment
 import com.example.hiddencamera.R
 
@@ -43,21 +45,23 @@ class Home_card_Adapter(
                 ContextCompat.getColor(holder.itemView.context, R.color.main)
             )
         }
+        val fragmentTransaction = (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        var fragment: Fragment = Wifi_Fragment()
         holder.cardItem.setOnClickListener {
-            if (itemsList[position].text == "Wi-Fi Scan") {
-                // Assuming you're using a FragmentTransaction to replace the current fragment
-                val fragmentTransaction = (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                val wifiFragment = Wifi_Fragment() // Your WiFi fragment
-                fragmentTransaction.replace(R.id.fragment_container, wifiFragment)
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
+            if(itemsList[position].text == "Wi-Fi Scan") {
+                fragment = Wifi_Fragment()
             }
             else if(itemsList[position].text == "Reddot"){
-                val fragmentTransaction = (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-                fragmentTransaction.replace(R.id.fragment_container, InfraRed_Detection())
-                fragmentTransaction.addToBackStack(null)
-                fragmentTransaction.commit()
+                fragment = InfraRed_Detection()
             }
+            else if(itemsList[position].text == "Sensor"){
+                fragment = MagnetometerFrag()
+            }
+
+            fragmentTransaction.replace(R.id.fragment_container, fragment)
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+
         }
     }
 
