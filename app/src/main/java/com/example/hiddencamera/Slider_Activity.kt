@@ -1,6 +1,7 @@
 package com.example.hiddencamera
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -58,6 +59,13 @@ class Slider_Activity : AppCompatActivity() {
             } else {
                 // If it's the last slide, move to MainActivity
                 val intent = Intent(this@Slider_Activity, MainActivity::class.java)
+
+                //Login Check
+                val sharedPreferences: SharedPreferences = getSharedPreferences("LoginCheck", MODE_PRIVATE)
+                val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                editor.putBoolean("isLogin",true)
+                editor.apply()
+
                 startActivity(intent)
                 finish()
             }

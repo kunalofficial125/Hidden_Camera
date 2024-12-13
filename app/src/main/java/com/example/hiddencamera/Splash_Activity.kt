@@ -1,6 +1,7 @@
 package com.example.hiddencamera
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -23,10 +24,22 @@ class Splash_Activity : AppCompatActivity() {
             insets
         }
 
-        // Add a delay of 5 seconds and then navigate to MainActivity
+        // Add a delay of 3 seconds and then navigate to MainActivity
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@Splash_Activity, Slider_Activity::class.java)
-            startActivity(intent)
+
+            val sharedPreferences: SharedPreferences = getSharedPreferences("LoginCheck", MODE_PRIVATE)
+            val isLogin = sharedPreferences.getBoolean("isLogin",false)
+            val intent: Intent
+
+            if(isLogin){
+                intent = Intent(this@Splash_Activity, MainActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                intent = Intent(this@Splash_Activity, Slider_Activity::class.java)
+                startActivity(intent)
+            }
+
             finish()
         }, 3000)
     }
