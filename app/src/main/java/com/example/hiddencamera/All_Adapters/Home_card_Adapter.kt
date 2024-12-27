@@ -1,5 +1,6 @@
 package com.example.hiddencamera.All_Adapters
 
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -18,13 +20,14 @@ import com.example.hiddencamera.Fragments.Wifi_Fragment
 import com.example.hiddencamera.R
 
 class Home_card_Adapter(
-    private val itemsList: ArrayList<Home_Card_Model>
+    private val itemsList: ArrayList<Home_Card_Model>, private val context: Context
 ) : RecyclerView.Adapter<Home_card_Adapter.HomeViewHolder>() {
 
     inner class HomeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.idTV_text)
         val image: ImageView = itemView.findViewById(R.id.idIV_image)
         val cardItem: LinearLayout = itemView.findViewById(R.id.card_item)
+        val cardView: CardView = itemView.findViewById(R.id.cardView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -39,7 +42,8 @@ class Home_card_Adapter(
         holder.image.setImageResource(itemsList.get(position).icon)
 
         if (itemsList[position].text == "History") {
-            holder.cardItem.setBackgroundColor(Color.BLACK)
+            holder.cardItem.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
+            //holder.cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.gray))
         } else {
             holder.cardItem.setBackgroundColor(
                 ContextCompat.getColor(holder.itemView.context, R.color.main)
@@ -58,9 +62,10 @@ class Home_card_Adapter(
                 fragment = MagnetometerFrag()
             }
 
-            fragmentTransaction.replace(R.id.fragment_container, fragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            fragmentTransaction.setCustomAnimations(R.anim.slide_in, R.anim.slide_out, R.anim.slide_in, R.anim.slide_out)
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
 
         }
     }

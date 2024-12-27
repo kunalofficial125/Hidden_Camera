@@ -1,39 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#242425"
     tools:context=".Fragments.Wifi_Fragment">
 
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginTop="10pt"
-        android:id="@+id/scan_btn"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:text="Scan"
-        android:gravity="center"
-        android:layout_height="wrap_content"/>
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginTop="10pt"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/_15sdp"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Wi-Fi Scan"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/white"
+                android:paddingEnd="@dimen/_30sdp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/radarBgImageView"
+            android:layout_width="@dimen/_230sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:scaleType="fitCenter"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:src="@drawable/radar_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/radarAnim"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="@dimen/_140sdp"
+        app:lottie_rawRes="@raw/radar_anim_lottie"
+        app:layout_constraintBottom_toBottomOf="@+id/radarBgImageView"
+        app:layout_constraintEnd_toEndOf="@+id/radarBgImageView"
+        app:layout_constraintStart_toStartOf="@+id/radarBgImageView"
+        app:layout_constraintTop_toTopOf="@+id/radarBgImageView" />
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/scan_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/blue_button_bg"
+            android:gravity="center"
+            android:text="Scan"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deviceStatusTextView" />
+
+    <!-- <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Stop_scan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/scan_btn"
-        android:id="@+id/Stop_scan"
-        android:text="Stop"/>
+        android:text="Stop"
+        app:layout_constraintTop_toBottomOf="@+id/scan_btn" /> -->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="10pt"
-        android:layout_below="@id/Stop_scan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/wifi_list"
-        />
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:layout_below="@id/Stop_scan"
-        android:id="@+id/scanResultsTextView"/>
 
-</RelativeLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/wifi_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_250sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scan_btn" />
+
+
+        <ImageView
+            android:id="@+id/deviceStatusImageView"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:src="@drawable/not_found"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@+id/deviceStatusTextView"
+            app:layout_constraintTop_toBottomOf="@+id/radarBgImageView" />
+
+        <TextView
+            android:id="@+id/deviceStatusTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Device Found"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="bold"
+            android:paddingStart="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radarBgImageView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="Note: The sensor is not guaranteed to detect hidden cameras accurately, as its readings can be affected by other Wi-Fi nearby."
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wifi_list" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

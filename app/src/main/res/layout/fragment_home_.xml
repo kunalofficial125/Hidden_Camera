@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@color/background"
     android:layout_centerInParent="true"
     tools:context=".Fragments.Home_Fragment">
 
@@ -11,9 +13,10 @@
         android:id="@+id/text_camera_detector"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="Camera Detector"
         style="@style/LargeTitle"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="@dimen/_10sdp"
         android:layout_centerHorizontal="true" />
 
 

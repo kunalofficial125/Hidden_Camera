@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:backgroundTint="@color/gray"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
@@ -31,6 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Wi-Fi Name"
                 android:textSize="16sp"
+                android:textColor="#A29C9C"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
 

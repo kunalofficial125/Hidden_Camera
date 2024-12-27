@@ -5,6 +5,10 @@
     <color name="main">#6DADF3</color>
     <color name="translucent_gray">#80A0A0A0</color>
     <color name="translucent_red">#80B82828</color>
+    <color name="yellow">#CEBF31</color>
+    <color name="background">#121212</color>
+    <color name="gray">#434141</color>
+    <color name="red">#E93232</color>
     <color name="translucent_green">#8045BC45</color>
     <color name="translucent_blue">#804A4ABC</color>
     <color name="translucent_yellow">#80C5C53E</color>

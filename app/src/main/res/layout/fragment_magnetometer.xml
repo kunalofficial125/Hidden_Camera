@@ -4,22 +4,113 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#242425"
     tools:context=".Fragments.MagnetometerFrag">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/backBtn"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/_15sdp"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Sensor"
+                android:textSize="@dimen/_14ssp"
+                android:textColor="@color/white"
+                android:paddingEnd="@dimen/_30sdp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/radarBgImageView"
+            android:layout_width="@dimen/_290sdp"
+            android:layout_height="@dimen/_260sdp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/radar_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/radarAnim"
+            android:layout_width="@dimen/_190sdp"
+            android:layout_height="@dimen/_190sdp"
+            app:lottie_rawRes="@raw/radar_anim_lottie"
+            app:layout_constraintBottom_toBottomOf="@+id/radarBgImageView"
+            app:layout_constraintEnd_toEndOf="@+id/radarBgImageView"
+            app:layout_constraintStart_toStartOf="@+id/radarBgImageView"
+            app:layout_constraintTop_toTopOf="@+id/radarBgImageView" />
+
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:text="Chances Of Camera Nearby:"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16ssp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radarBgImageView" />
+
         <TextView
             android:id="@+id/magneticFieldTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Sensor is Off"
             android:textColor="@color/white"
             android:textSize="@dimen/_16ssp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <Button
+            android:id="@+id/enableScanBtn"
+            android:layout_width="@dimen/_65sdp"
+            android:layout_height="@dimen/_65sdp"
+            android:text="OFF"
+            android:alpha="0.5"
+            android:textStyle="bold"
+            android:textSize="@dimen/_14ssp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:background="@drawable/round_btn_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/magneticFieldTextView" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Note: The sensor is not guaranteed to detect hidden cameras accurately, as its readings can be affected by other magnetic objects nearby."
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:gravity="center"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

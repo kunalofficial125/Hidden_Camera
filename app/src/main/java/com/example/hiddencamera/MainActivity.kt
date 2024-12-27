@@ -1,6 +1,6 @@
 package com.example.hiddencamera
 
-import android.content.SharedPreferences
+import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -32,6 +32,25 @@ class MainActivity : AppCompatActivity() {
                 arrayOf(android.Manifest.permission.CAMERA), 1098)
         }
 
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            requestPermissions(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            //return
+        }
+
+//        val locationManager = applicationContext.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+//
+//
+//        val isLocationEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) ||
+//                locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+//
+//        if(!isLocationEnabled){
+//            val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+//            startActivity(intent)
+//        }
 
         if (savedInstanceState == null) {
             loadFragment(Home_Fragment())

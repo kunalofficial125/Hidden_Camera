@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hiddencamera.All_Models.WifiModel
+import com.example.hiddencamera.Fragments.Wifi_Fragment
 import com.example.hiddencamera.R
 
-class Wifi_Adapter(private val wifiList: List<WifiModel>) :
+class Wifi_Adapter(private val wifiList: List<WifiModel>, private val fragment: Fragment) :
     RecyclerView.Adapter<Wifi_Adapter.WifiViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WifiViewHolder {
@@ -31,7 +33,7 @@ class Wifi_Adapter(private val wifiList: List<WifiModel>) :
         val suspiciousText = "Suspicious"
 
         // Check if network uses secure encryption (WPA2, WPA3) or is insecure (WEP, open)
-        if (wifi.safetyStatus.contains("WPA2") || wifi.safetyStatus.contains("WPA3")) {
+        if (wifi.safetyStatus.contains("WPA2") || wifi.safetyStatus.contains("WPA3") ||  wifi.safetyStatus.contains("WPA") ) {
             holder.wifiSafety.text = safeText
             holder.wifiSafety.setTextColor(Color.GREEN)
             Log.d("WifiSecurity", "${wifi.ssid}: Secure (WPA2/WPA3)")
@@ -39,6 +41,8 @@ class Wifi_Adapter(private val wifiList: List<WifiModel>) :
         else if (wifi.safetyStatus.contains("WEP") || wifi.safetyStatus.contains("WPS")) {
             holder.wifiSafety.text = unsafeText
             holder.wifiSafety.setTextColor(Color.RED)
+            val frag = fragment as Wifi_Fragment
+            frag.changeRadarColor()
             Log.d("WifiSecurity", "${wifi.ssid}: Insecure (WEP or WPS)")
         }
         else {

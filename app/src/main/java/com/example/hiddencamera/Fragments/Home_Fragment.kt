@@ -38,7 +38,7 @@ class Home_Fragment : Fragment() {
         itemList.add(Home_Card_Model("History", R.drawable.history))
 
         // Initialize the adapter
-        homeCardAdapter = Home_card_Adapter(itemList)
+        homeCardAdapter = Home_card_Adapter(itemList, requireContext())
 
         // Set the layout manager and adapter to the RecyclerView
         recyclerView.layoutManager = GridLayoutManager(context, 2)
